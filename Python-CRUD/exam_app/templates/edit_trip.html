@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exam_style.css' %}" />
+</head>
+
+<body>
+    <div class="navbar">
+            <h1>Hello, {{user.first_name.title}}</h1>
+            <a href="/dashboard" class="anchor">Dashboard</a><br>
+            <a href="/logout" class="anchor">Logout</a>
+            <h1>Edit Trip</h1>
+    </div>
+    <div class="exam_edit">
+        
+        <form action="/update" method="POST">
+            {% csrf_token %}
+            
+            <label for="destination">Destination: <input type="text" name="destination" value="{{exam.destination}}" ></label><br>
+            <label for="start_date">Start Date: <input type="date" name="start_date" value="{{exam.start_date}}"></label><br>
+            <label for="end_date">End Date: <input type="date" name="end_date" value="{{exam.end_date}}"></label><br>
+            <label for="itineray">Itineray: <textarea style="margin-left: 35px;" name="itineray" id="oo" cols="30" rows="10">{{exam.itineray}}</textarea></label><br>
+            <input type="hidden" name="exam_id" value="{{exam.id}}">
+            <button type="submit" class="btn">Update</button>
+        </form>
+        <a href="/delete/{{exam.id}}">Delete</a>
+        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{message}}
+                    </li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

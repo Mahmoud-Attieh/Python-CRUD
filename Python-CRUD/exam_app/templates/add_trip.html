@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Hello, {{user.first_name}}</h1>
+        <a href="/dashboard" class="anchor">Dashboard</a>
+        <a href="/logout" class="anchor">Logout</a>
+        <h1>Plan a new Trip</h1>
+    </div>
+    <div>
+        <form action="/add_exam" method="POST">
+            {% csrf_token %}
+            <label for="destination">Destination: <input type="text" name="destination" ></label><br><br>
+            <label for="start_date">Start Date: <input type="date" name="start_date" ></label><br><br>
+            <label for="end_date">End Date: <input type="date" name="end_date" ></label><br><br>
+            <label for="itineray">Itineray: <textarea style="margin-left: 35px;" name="itineray" id="oo" cols="30" rows="10"></textarea></label><br><br>
+            
+            
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{message}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+    </div>
+</body>
+
+</html>

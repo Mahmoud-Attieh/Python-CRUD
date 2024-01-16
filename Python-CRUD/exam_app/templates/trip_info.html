@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{exam.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exam_style.css' %}" />
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Hello, {{user.first_name}}</h1>
+        <a href="/dashboard" class="anchor">Dashboard</a>
+        <a href="/logout" class="anchor">Logout</a>
+        <h1>{{exam.destination}}</h1>
+</div>
+    <div class="info_box">
+        <p>Start Date: {{exam.start_date}}</p>
+        <p>End Date: {{exam.end_date}}</p>
+        <p>Created On: {{exam.created_at}}</p>
+        <p>Last Updated: {{exam.updated_at}}</p>
+        <p>Organized by :{{exam.user.first_name}}  </p><br>
+        <p>Itineray :{{exam.itineray}}  </p><br>
+        
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exam_style.css' %}" />
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Hello, {{user.first_name.title}}</h1>
+        <a href="/logout" class="anchor" style="margin-left: 35px;">Logout</a>
+        <h1>All Trips</h1>
+    </div>
+    <div class="container">
+        <div class="left_side">
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Organizer</th>
+                    <th>Actions</th>
+                </tr>
+                {% for exam in exams %}
+                <tr>
+                <td>{{exam.destination}}</td> 
+                <td>{{exam.start_date}}</td>
+                <td>{{exam.end_date}}</td>
+                <td>{{exam.user.first_name}}</td>
+                {% if user.id == exam.user.id %}
+                <td><a href="/trips/edit/{{exam.id}}">Edit</a> </td>
+                
+                {% else %}
+                <td><a href="/trips/{{exam.id}}">Details</a> </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table><br><br>
+        </div>
+        <div class="right_side">
+            <a href="/trips/new" class="anchor">+ Plan a new Trip</a>
+        </div>
+    </div>
+</body>
+
+</html>
